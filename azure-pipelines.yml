@@ -20,10 +20,11 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
-
-- task: DownloadBuildArtifacts@1
+- task: Ant@1
   inputs:
-    buildType: 'current'
-    downloadType: 'single'
-    artifactName: 'drop'
-    downloadPath: '$(System.ArtifactsDirectory)'
+    buildFile: 'build.xml'
+    options: 'DcollectionId=$(system.collectionId)***)'
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
+    testRunTitle: 'drop'
+    javaHomeOption: 'JDKVersion'
